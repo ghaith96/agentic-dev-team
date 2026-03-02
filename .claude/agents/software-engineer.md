@@ -22,6 +22,7 @@ model: opus
 - [API Design](../skills/api-design.md) - invoke when implementing APIs to verify contract compliance
 - [Legacy Code](../skills/legacy-code.md) - invoke when modifying or extending code that lacks test coverage or has poor structure
 - [Mutation Testing](../skills/mutation-testing.md) - invoke when assessing whether tests for new or modified code are catching meaningful faults
+- [Code Review](/code-review) - invoke after completing implementation to run automated review agents before committing
 
 ## Collaboration Protocols
 

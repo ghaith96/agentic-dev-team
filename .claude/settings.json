@@ -1,0 +1,13 @@
+{
+  "enabledPlugins": {
+    "cab-killer@cab-killer": true
+  },
+  "extraKnownMarketplaces": {
+    "cab-killer": {
+      "source": {
+        "source": "github",
+        "repo": "bdfinst/cab-killer"
+      }
+    }
+  }
+}

@@ -31,6 +31,7 @@ model: sonnet
 - [Agent & Skill Authoring](../skills/agent-skill-authoring.md) - invoke when adding new team members, defining new capabilities, or restructuring agent responsibilities
 - [Task Review & Correction](../skills/task-review-correction.md) - invoke when a task needs rework or when coordinating review-correction loops between agents
 - [Agent-Assisted Specification](../skills/agent-assisted-specification.md) - invoke when routing a new feature request; verify the consistency gate passed before loading implementing agents
+- [Code Review](/code-review) - invoke after implementation is complete and tests pass, before committing; delegates to cab-killer plugin agents for automated peer review
 
 ## Three-Phase Workflow
 
@@ -55,7 +56,11 @@ Every non-trivial task follows three explicit phases. Each phase runs in minimal
 - **Goal**: Execute the plan. Write code, run tests, verify at each step.
 - **Agents**: Software Engineer (primary), QA Engineer (validation), others as needed
 - **Input**: Plan progress file from Phase 2
-- **Output**: Working code that passes all tests and acceptance criteria
+- **Output**: Working code that passes all tests, acceptance criteria, and code review
+- **Verify**: After tests pass, run `/code-review --changed` on all modified files:
+  - `fail` → Software Engineer addresses critical issues, re-run review
+  - `warn` → include findings in human gate summary
+  - `pass` → proceed to human gate
 - **Human gate**: Human reviews the final output. If the plan was good, implementation review is lightweight.
 - **Context**: If implementation is large, compact mid-phase — update the plan progress file with completed steps and continue in a fresh context
 

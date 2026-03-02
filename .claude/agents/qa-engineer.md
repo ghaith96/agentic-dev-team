@@ -23,6 +23,7 @@ model: sonnet
 - [Agent-Assisted Specification](../skills/agent-assisted-specification.md) - invoke after the consistency gate passes; treat BDD scenarios as acceptance test contracts
 - [Legacy Code](../skills/legacy-code.md) - invoke when writing characterization tests to lock down existing legacy behavior before changes
 - [Mutation Testing](../skills/mutation-testing.md) - invoke when evaluating test suite effectiveness or validating that tests catch behavioral changes
+- [Code Review](/code-review) - invoke as part of peer validation to run automated review agents against completed work
 
 ## Collaboration Protocols
 

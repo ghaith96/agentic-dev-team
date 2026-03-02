@@ -55,6 +55,7 @@ Skills are reusable knowledge modules in `.claude/skills/` that agents reference
 | API Design | `skills/api-design.md` | 600 | Architect, Software Engineer |
 | Legacy Code | `skills/legacy-code.md` | 700 | Software Engineer, QA Engineer, Architect |
 | Mutation Testing | `skills/mutation-testing.md` | 700 | QA Engineer, Software Engineer |
+| Code Review (external) | `/code-review` (cab-killer plugin) | — | Orchestrator, Software Engineer, QA Engineer |
 
 ## Request Processing Flow
 
@@ -65,7 +66,7 @@ For trivial tasks (typo fix, simple query), the Orchestrator routes directly to 
 2. **Human Review Gate** — Human reviews research findings. Catching a misunderstanding here prevents hundreds of bad lines of code.
 3. **Plan** — Specify every change: files, snippets, test strategy, verification steps. The plan is the primary review artifact — 200 lines of plan is far more reviewable than 2,000 lines of code. Output: implementation plan progress file written to `memory/`.
 4. **Human Review Gate** — Human reviews the plan. This replaces traditional line-by-line code review as the primary quality gate.
-5. **Implement** — Execute the plan. Write code, run tests, verify at each step. If the plan is good, implementation is mechanical. Output: working code + test results.
+5. **Implement** — Execute the plan. Write code, run tests, verify at each step. Run `/code-review --changed` on all modified files before committing. If the plan is good, implementation is mechanical. Output: working code + test results + code review pass.
 6. **Human Review Gate** — Human reviews the final output. Lightweight if the plan was correct.
 7. **Learning loop** — Update configs if needed, log metrics, refine routing.
 
