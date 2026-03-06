@@ -21,25 +21,32 @@ flowchart TD
 ### Prerequisites
 
 **Required:**
+
 - [Claude Code](https://docs.anthropic.com/en/docs/claude-code) installed and authenticated
 - `jq` — used by PostToolUse hooks for JSON parsing
   - macOS: `brew install jq`
   - Linux: `apt install jq` or `yum install jq`
 
 **Recommended:**
+
 - [Beads](https://github.com/beads-dev/beads) (`bd`) — git-backed issue tracker for AI agents. Gives agents persistent, structured task memory across sessions. Agents query `bd ready --json` at session start instead of relying on reconstructed prose context. If `bd` is not installed, agents fall back to `memory/` progress files.
+
   ```bash
   npm install -g @beads/bd
   # or: brew install beads
   ```
+
   Initialize in your project:
+
   ```bash
   bd init
   git add .beads && git commit -m "Initialize Beads task tracker"
   ```
 
 **Optional:**
+
 - `semgrep` — required only for `/semgrep-analyze`
+
   ```bash
   pip install semgrep
   # or: brew install semgrep
@@ -47,23 +54,38 @@ flowchart TD
 
 ### Plugin install (recommended)
 
-```bash
-# Add this repo as a marketplace
-claude plugin marketplace add <your-org>/agentic-dev-team
+**From the Claude registry:**
 
+```bash
 # Install into the current project
-claude plugin install agentic-dev-team@<your-org>/agentic-dev-team
+claude plugin install agentic-dev-team
 
 # Or install user-wide (available in all projects)
-claude plugin install --scope user agentic-dev-team@<your-org>/agentic-dev-team
+claude plugin install --scope user agentic-dev-team
+```
+
+**From GitHub:**
+
+```bash
+claude plugin install https://github.com/bdfinst/agentic-dev-team
+claude plugin install --scope user https://github.com/bdfinst/agentic-dev-team
+```
+
+**From a local clone:**
+
+```bash
+claude plugin install --scope project /path/to/agentic-dev-team
+claude plugin install --scope user /path/to/agentic-dev-team
 ```
 
 After installing, run the prerequisite check:
+
 ```bash
 ./install.sh
 ```
 
 Then add the Beads session-start hook to your global `~/.claude/CLAUDE.md`:
+
 ```markdown
 ## Session Start
 At the beginning of every session, run `bd prime` to load Beads context before any other work.
@@ -72,6 +94,7 @@ At the beginning of every session, run `bd prime` to load Beads context before a
 ### Verify
 
 After starting Claude Code, confirm the system is working:
+
 ```
 > What agents are available on this team?
 ```
@@ -163,6 +186,7 @@ cd agentic-dev-team
 ```
 
 This creates symlinks:
+
 ```
 .claude/agents   -> ../agents
 .claude/skills   -> ../skills
@@ -171,6 +195,7 @@ This creates symlinks:
 ```
 
 To remove the symlinks:
+
 ```bash
 ./dev-setup.sh --clean
 ```
@@ -178,25 +203,29 @@ To remove the symlinks:
 ### Testing changes
 
 **Unit testing agents and skills** — run the eval suite against a single agent or the full set:
+
 ```
 /eval-runner
 /eval-runner agents/naming-review.md
 ```
 
 **Testing a hook change** — hooks fire automatically on every file write/edit while Claude is running in this repo. Trigger one manually to confirm behavior:
+
 ```bash
 echo '{"tool_input":{"file_path":"test.js"}}' | bash hooks/js-fp-review.sh
 ```
 
 **Testing in a real project** — the most reliable test is installing the plugin into a scratch project:
+
 ```bash
 mkdir /tmp/plugin-test && cd /tmp/plugin-test
 git init && claude
 # inside claude:
-# claude plugin install --scope project agentic-dev-team@<your-org>/agentic-dev-team
+# claude plugin install --scope project https://github.com/bdfinst/agentic-dev-team
 ```
 
 **Running the eval audit** — verify all agents and commands meet structural compliance:
+
 ```
 /eval-audit
 ```
