@@ -54,28 +54,27 @@ flowchart TD
 
 ### Plugin install (recommended)
 
-**From the Claude registry:**
-
-```bash
-# Install into the current project
-claude plugin install agentic-dev-team
-
-# Or install user-wide (available in all projects)
-claude plugin install --scope user agentic-dev-team
-```
+Installation is two steps: add the marketplace source, then install the plugin.
 
 **From GitHub:**
 
 ```bash
-claude plugin install https://github.com/bdfinst/agentic-dev-team
-claude plugin install --scope user https://github.com/bdfinst/agentic-dev-team
+claude plugin marketplace add https://github.com/bdfinst/agentic-dev-team
+claude plugin install agentic-dev-team
 ```
 
 **From a local clone:**
 
 ```bash
-claude plugin install --scope project /path/to/agentic-dev-team
-claude plugin install --scope user /path/to/agentic-dev-team
+claude plugin marketplace add /path/to/agentic-dev-team
+claude plugin install agentic-dev-team
+```
+
+By default the marketplace is registered at user scope (available in all projects). To scope it to a single project:
+
+```bash
+claude plugin marketplace add --scope project https://github.com/bdfinst/agentic-dev-team
+claude plugin install --scope project agentic-dev-team
 ```
 
 After installing, run the prerequisite check:
@@ -221,7 +220,8 @@ echo '{"tool_input":{"file_path":"test.js"}}' | bash hooks/js-fp-review.sh
 mkdir /tmp/plugin-test && cd /tmp/plugin-test
 git init && claude
 # inside claude:
-# claude plugin install --scope project https://github.com/bdfinst/agentic-dev-team
+# claude plugin marketplace add --scope project /path/to/agentic-dev-team
+# claude plugin install --scope project agentic-dev-team
 ```
 
 **Running the eval audit** — verify all agents and commands meet structural compliance:
