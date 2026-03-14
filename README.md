@@ -150,8 +150,8 @@ Every non-trivial task follows **Research → Plan → Implement** with human re
 | `/code-review` | Run all review agents with pre-flight gates, scope validation, and MCP probing |
 | `/review` | Alias for `/code-review` |
 | `/review-agent <name>` | Run a single review agent |
-| `/eval-audit` | Audit agents and commands for structural compliance |
-| `/eval-runner` | Run eval fixtures and grade review agent accuracy |
+| `/agent-audit` | Audit agents and commands for structural compliance |
+| `/agent-eval` | Run eval fixtures and grade review agent accuracy |
 | `/agent-add` | Scaffold a new review agent |
 | `/agent-remove` | Remove an agent and all registry entries |
 | `/add-plugin` | Install a plugin and register it in settings.json |
@@ -209,8 +209,8 @@ To remove the symlinks:
 **Unit testing agents and skills** — run the eval suite against a single agent or the full set:
 
 ```
-/eval-runner
-/eval-runner agents/naming-review.md
+/agent-eval
+/agent-eval agents/naming-review.md
 ```
 
 **Testing a hook change** — hooks fire automatically on every file write/edit while Claude is running in this repo. Trigger one manually to confirm behavior:
@@ -232,7 +232,7 @@ git init && claude
 **Running the eval audit** — verify all agents and commands meet structural compliance:
 
 ```
-/eval-audit
+/agent-audit
 ```
 
 ### Hook paths
@@ -245,7 +245,7 @@ When running Claude Code in this repo, hooks are loaded from `hooks/` at the pro
 /agent-add <description or URL to a coding standard>
 ```
 
-This scaffolds the agent file, adds it to the registry in `CLAUDE.md`, and creates eval fixtures. Run `/eval-audit` and `/eval-runner` after to verify compliance.
+This scaffolds the agent file, adds it to the registry in `CLAUDE.md`, and creates eval fixtures. Run `/agent-audit` and `/agent-eval` after to verify compliance.
 
 ### Documentation
 

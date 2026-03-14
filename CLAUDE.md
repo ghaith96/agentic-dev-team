@@ -106,8 +106,8 @@ User-invocable workflows in `.claude/commands/`. All review commands are execute
 |---------|------|------|--------------|
 | `/code-review` | `commands/code-review.md` | orchestrator | Run all enabled review agents with pre-flight gates |
 | `/review-agent` | `commands/review-agent.md` | worker | Run a single review agent (used for inline checkpoints) |
-| `/eval-audit` | `commands/eval-audit.md` | orchestrator | Audit agents/commands/hooks for structural compliance |
-| `/eval-runner` | `commands/eval-runner.md` | orchestrator | Run eval fixtures, grade accuracy, detect regressions |
+| `/agent-audit` | `commands/agent-audit.md` | orchestrator | Audit agents/commands/hooks for structural compliance |
+| `/agent-eval` | `commands/agent-eval.md` | orchestrator | Run eval fixtures, grade accuracy, detect regressions |
 | `/agent-add` | `commands/agent-add.md` | implementation | Scaffold a new review agent with eval compliance and doc updates |
 | `/agent-remove` | `commands/agent-remove.md` | implementation | Remove an agent and all its registry entries and doc references |
 | `/add-plugin` | `commands/add-plugin.md` | implementation | Install a plugin and register it in settings.json |

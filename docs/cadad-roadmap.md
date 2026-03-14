@@ -42,7 +42,7 @@ C-DAD's core argument: for AI to function as a dependable collaborator, software
   - `owners` — team or individual responsible for maintaining it
 - [ ] Generate initial manifests for all existing agents and skills
 - [ ] Update `/agent-add` and `/agent-remove` commands to maintain the registry automatically
-- [ ] Update `/eval-audit` to validate that all agents in `.claude/agents/` have corresponding registry entries
+- [ ] Update `/agent-audit` to validate that all agents in `.claude/agents/` have corresponding registry entries
 - [ ] Add a registry validation step to the `eval-compliance-check.sh` hook
 
 **Example manifest** (`registry/agents/security-review.json`):
@@ -79,7 +79,7 @@ C-DAD's core argument: for AI to function as a dependable collaborator, software
   - Deprecation sets `status: deprecated` in frontmatter and registry, adds a `deprecated-by:` link if a replacement exists, and removes the agent from active routing without deleting the file
   - Deletion remains available but requires explicit confirmation
 - [ ] Update the Orchestrator's routing logic to skip agents with `status: deprecated` or `status: retired`
-- [ ] Update `/eval-audit` to flag `draft` agents that have no eval fixtures
+- [ ] Update `/agent-audit` to flag `draft` agents that have no eval fixtures
 
 ---
 
@@ -136,7 +136,7 @@ C-DAD's core argument: for AI to function as a dependable collaborator, software
     data-retention: session-only
     exemptions: []
   ```
-- [ ] Update `/eval-audit` to check that agents do not implicitly violate org-level policies
+- [ ] Update `/agent-audit` to check that agents do not implicitly violate org-level policies
 - [ ] Document the exemption process: any `exemptions:` entry must include a rationale and an approver reference
 
 ---
@@ -171,7 +171,7 @@ C-DAD's core argument: for AI to function as a dependable collaborator, software
   ```
 - [ ] Add a `used-by:` field (inverse index) to the registry manifest, populated automatically from `depends-on` entries
 - [ ] Create a script (`scripts/dependency-graph.sh`) that reads all manifests and emits a DOT or Mermaid dependency graph
-- [ ] Update `/eval-audit` to flag circular dependencies and orphaned skills (skills with no `used-by` entries)
+- [ ] Update `/agent-audit` to flag circular dependencies and orphaned skills (skills with no `used-by` entries)
 - [ ] Add a breaking-change check: when an agent or skill with `change-type: major` is modified, identify all dependents from the registry and include them in the review scope
 
 ---

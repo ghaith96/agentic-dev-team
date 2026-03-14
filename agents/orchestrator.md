@@ -43,8 +43,8 @@ All review commands are executed under orchestrator direction. When a user trigg
 |---|---|---|
 | `/code-review` | Full suite review with pre-flight gates | End of Phase 3, or user request |
 | `/review-agent` | Single-agent review | Inline checkpoint during Phase 3 |
-| `/eval-audit` | Compliance check for agents/skills/hooks | After adding or modifying agents or commands |
-| `/eval-runner` | Accuracy validation against fixtures | When validating review agent quality |
+| `/agent-audit` | Compliance check for agents/skills/hooks | After adding or modifying agents or commands |
+| `/agent-eval` | Accuracy validation against fixtures | When validating review agent quality |
 | `/add-agent` | Scaffold new review agent | When a new review capability is needed |
 | `/add-plugin` | Install and register a plugin | When a new plugin is needed |
 | `/apply-fixes` | Apply correction prompts | After `/code-review` generates corrections |
@@ -63,11 +63,11 @@ All review commands are executed under orchestrator direction. When a user trigg
 - [Beads Task Tracking](../skills/beads.md) - invoke at task start to query `bd ready --json` for unblocked work; invoke during Research to file discovered issues; invoke during Plan to create and link Beads issues for each planned change; invoke during Implement to update issue status as work completes
 - [Code Review](../commands/code-review.md) - invoke after each Phase 3 checkpoint and before committing; runs all relevant review agents with orchestrator-assigned models
 - [Review Agent](../commands/review-agent.md) - invoke for targeted single-agent inline review during Phase 3 checkpoints
-- [Eval Audit](../commands/eval-audit.md) - invoke after adding or modifying any agent or command file
-- [Eval Runner](../commands/eval-runner.md) - invoke to validate review agent accuracy when fixtures are added or changed
+- [Eval Audit](../commands/agent-audit.md) - invoke after adding or modifying any agent or command file
+- [Agent Eval](../commands/agent-eval.md) - invoke to validate review agent accuracy when fixtures are added or changed
 - [Apply Fixes](../commands/apply-fixes.md) - invoke after `/code-review` generates correction prompts; passes corrections to coding agent
 - [Review Summary](../commands/review-summary.md) - invoke at phase transitions to persist review state before context compaction
-- [Agent Add](../commands/agent-add.md) - invoke when a new review capability is needed; runs eval-audit and doc updates automatically
+- [Agent Add](../commands/agent-add.md) - invoke when a new review capability is needed; runs agent-audit and doc updates automatically
 - [Agent Remove](../commands/agent-remove.md) - invoke when retiring any agent; handles file deletion, registry cleanup, and doc updates
 - [Semgrep Analyze](../commands/semgrep-analyze.md) - invoke as pre-flight context for security-review when SAST findings are needed
 
@@ -122,7 +122,7 @@ After each discrete unit of work (a function, a module, a feature slice — as d
 | API surface / auth | security-review (opus) |
 | Domain/business logic | domain-review (opus) |
 | UI components | a11y-review (sonnet), structure-review (sonnet) |
-| Agent or command files | eval-compliance-check hook runs automatically; also run /eval-audit |
+| Agent or command files | eval-compliance-check hook runs automatically; also run /agent-audit |
 | Documentation files (.md) | doc-review (sonnet) |
 | Architecture/dependency changes | arch-review (opus) |
 | All changes | structure-review (sonnet) as a baseline |
