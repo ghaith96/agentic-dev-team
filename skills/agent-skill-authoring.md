@@ -185,7 +185,7 @@ Use `/agent-add` — it handles all registration steps automatically. For manual
 **Every change to this repository must be reflected in documentation.** This is enforced at three levels:
 
 1. **Hook** — `eval-compliance-check.sh` fires on every Edit/Write to any file and emits targeted doc sync reminders:
-   - Agent/command files → run `/eval-audit`, update registry tables and docs
+   - Agent/command files → run `/agent-audit`, update registry tables and docs
    - Hook/settings/CLAUDE.md → verify setup and registry docs
    - Any other substantive file → check usage, architecture, setup, or README as appropriate
 2. **Commands** — `/agent-add` and `/agent-remove` include mandatory documentation update steps. The tech-writer persona reviews all modified docs before the command reports completion.

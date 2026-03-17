@@ -27,7 +27,7 @@ model: sonnet
 - [Legacy Code](../skills/legacy-code.md) - invoke when writing characterization tests to lock down existing legacy behavior before changes
 - [Mutation Testing](../skills/mutation-testing.md) - invoke when evaluating test suite effectiveness or validating that tests catch behavioral changes
 - [Code Review](../commands/code-review.md) - invoked by orchestrator for peer validation; QA runs `/code-review --changed` when independently validating completed work
-- [Eval Runner](../commands/eval-runner.md) - invoke to validate review agent accuracy when adding or modifying test fixtures in `.claude/evals/`
+- [Agent Eval](../commands/agent-eval.md) - invoke to validate review agent accuracy when adding or modifying test fixtures in `.claude/evals/`
 
 ## Collaboration Protocols
 

@@ -86,8 +86,8 @@ Slash commands are invoked by the user (e.g., `/code-review`) and executed under
 
 | Command | File | Purpose |
 | --- | --- | --- |
-| `/eval-audit` | [`eval-audit.md`](../.claude/commands/eval-audit.md) | Audit agents and commands for structural compliance |
-| `/eval-runner` | [`eval-runner.md`](../.claude/commands/eval-runner.md) | Run eval fixtures, grade review agent accuracy, detect regressions |
+| `/agent-audit` | [`agent-audit.md`](../.claude/commands/agent-audit.md) | Audit agents and commands for structural compliance |
+| `/agent-eval` | [`agent-eval.md`](../.claude/commands/agent-eval.md) | Run eval fixtures, grade review agent accuracy, detect regressions |
 
 ### Scaffolding Commands
 
@@ -147,4 +147,4 @@ See [Agent & Skill Authoring](../.claude/skills/agent-skill-authoring.md) for de
 
 ## Add a Slash Command
 
-For a new review agent command, use `/add-agent`. For a new workflow command, create `.claude/commands/{name}.md` following the slash command structure (YAML frontmatter with `user-invocable: true`, `Role:` declaration, constraints, numbered steps). Run `/eval-audit` after creation.
+For a new review agent command, use `/add-agent`. For a new workflow command, create `.claude/commands/{name}.md` following the slash command structure (YAML frontmatter with `user-invocable: true`, `Role:` declaration, constraints, numbered steps). Run `/agent-audit` after creation.

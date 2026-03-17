@@ -94,7 +94,7 @@ See [Agent & Skill Authoring](../.claude/skills/agent-skill-authoring.md) for de
 
 ## Add a Review Agent
 
-Use the `/agent-add` slash command — it scaffolds a compliant agent, checks for scope overlap with existing review agents, runs `/eval-audit` automatically, and registers the agent in `CLAUDE.md`.
+Use the `/agent-add` slash command — it scaffolds a compliant agent, checks for scope overlap with existing review agents, runs `/agent-audit` automatically, and registers the agent in `CLAUDE.md`.
 
 ```text
 /agent-add "React hook violations" --tier mid --lang js,ts,jsx,tsx
@@ -102,9 +102,9 @@ Use the `/agent-add` slash command — it scaffolds a compliant agent, checks fo
 
 Manual process:
 1. Create `.claude/agents/{name}-review.md` using the review agent template (see any existing review agent for reference)
-2. Run `/eval-audit .claude/agents/{name}-review.md --fix` to validate compliance
+2. Run `/agent-audit .claude/agents/{name}-review.md --fix` to validate compliance
 3. Add eval fixtures to `.claude/evals/fixtures/` and expected results to `.claude/evals/expected/`
-4. Run `/eval-runner --agent {name}-review` to validate accuracy
+4. Run `/agent-eval --agent {name}-review` to validate accuracy
 5. Add a row to the Review Agents table in `.claude/CLAUDE.md`
 
 ## Add a Project-Specific Custom Agent
@@ -135,7 +135,7 @@ Custom agents extend the team with knowledge specific to your project — your d
    .claude/evals/expected/django-review.json # expected findings
    ```
 
-5. Validate with `/eval-audit` and test with `/eval-runner --agent django-review`.
+5. Validate with `/agent-audit` and test with `/agent-eval --agent django-review`.
 
 **Important**: Custom agents in your project's `.claude/` are *additive* — they extend the standard team without replacing it. The Orchestrator will route to them when appropriate based on the task.
 
@@ -151,7 +151,7 @@ cp path/to/other-repo/.claude/agents/react-review.md .claude/agents/
 
 # Register it in your CLAUDE.md under Review Agents
 # Then validate:
-claude -p "/eval-audit .claude/agents/react-review.md --fix"
+claude -p "/agent-audit .claude/agents/react-review.md --fix"
 ```
 
 Any agent file that follows the standard template will work. If the source repo has eval fixtures for the agent, copy those too:
@@ -224,7 +224,7 @@ Review the diff before copying — if you have local modifications to a standard
 
 If you've built a custom agent that would be useful to others:
 
-1. Ensure the agent file follows the standard template (run `/eval-audit` against it)
+1. Ensure the agent file follows the standard template (run `/agent-audit` against it)
 2. Add eval fixtures and expected outputs
 3. Submit a PR to this repository with the agent file, fixtures, and a registry entry in `CLAUDE.md`
 
