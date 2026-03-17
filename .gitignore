@@ -15,3 +15,7 @@ UPDATE.md
 .claude/skills
 .claude/hooks
 sync-to-aci.sh
+
+# Dolt database files (added by bd init)
+.dolt/
+*.db
