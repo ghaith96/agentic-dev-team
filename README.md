@@ -29,7 +29,19 @@ flowchart TD
 
 **Recommended:**
 
-- [Beads](https://github.com/beads-dev/beads) (`bd`) — git-backed issue tracker for AI agents. Gives agents persistent, structured task memory across sessions. Agents query `bd ready --json` at session start instead of relying on reconstructed prose context. If `bd` is not installed, agents fall back to `memory/` progress files.
+- [Beads](https://github.com/beads-dev/beads) (`bd`) — git-backed issue tracker designed for AI agents. If `bd` is not installed, agents fall back to `memory/` progress files.
+
+  AI agents start each session with a fresh context window — they don't remember what happened last time. Beads solves this "fresh context" problem by giving agents a structured, queryable task graph they can read at session start instead of reconstructing state from prose summaries.
+
+  How agents use it across the three-phase workflow:
+
+  - **Session start** — Agents run `bd ready --json` to find their next unblocked task
+  - **Research** — Discovered problems are filed as Beads issues so they survive context compaction
+  - **Plan** — The implementation plan is decomposed into Beads issues with dependency links (`bd dep add`)
+  - **Implement** — Agents work one issue per session, mark it `done`, then end the session. The next session picks up the next unblocked item
+  - **Crash recovery** — If a session dies mid-task, the issue stays `in-progress` with a checkpoint in the body, so the next session can resume
+
+  Beads and `memory/` progress files are complementary: Beads is the source of truth for *what work remains* (structured task graph), while `memory/` captures *why decisions were made* (prose context).
 
   ```bash
   npm install -g @beads/bd
