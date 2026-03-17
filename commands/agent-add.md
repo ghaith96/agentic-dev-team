@@ -12,7 +12,7 @@ argument-hint: >-
   [--context diff-only|full-file|project-structure]
   [--lang <exts>] [--dry]
 user-invocable: true
-allowed-tools: Read, Write, Edit, Grep, Glob, WebFetch, Skill(eval-audit *)
+allowed-tools: Read, Write, Edit, Grep, Glob, WebFetch, Skill(agent-audit *)
 ---
 
 # Agent Add
@@ -145,7 +145,7 @@ frontier→opus.
 
 ### 6. Run eval audit
 
-Run `/eval-audit .claude/agents/<name>.md --fix` to validate compliance.
+Run `/agent-audit .claude/agents/<name>.md --fix` to validate compliance.
 If any checks fail after auto-fix, report the remaining issues.
 
 ### 7. Update CLAUDE.md

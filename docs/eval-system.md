@@ -140,7 +140,7 @@ Object.assign(obj, ...)       Is obj freshly created above?
 
 Two mechanisms ensure new agents and skills follow patterns:
 
-### `/eval-audit` skill (manual)
+### `/agent-audit` skill (manual)
 
 Reads every agent, skill, and hook file and checks for:
 
@@ -205,15 +205,15 @@ severity ranges, and keyword checks.
 }
 ```
 
-### `/eval-runner` skill
+### `/agent-eval` skill
 
 Run agents against fixtures and grade results:
 
 ```bash
-/eval-runner                                  # run all agents against all fixtures
-/eval-runner --agent js-fp-review             # run one agent
-/eval-runner --fixture fp-array-mutations.ts  # run one fixture
-/eval-runner --trials 3                       # multi-trial with pass@k scoring
+/agent-eval                                  # run all agents against all fixtures
+/agent-eval --agent js-fp-review             # run one agent
+/agent-eval --fixture fp-array-mutations.ts  # run one fixture
+/agent-eval --trials 3                       # multi-trial with pass@k scoring
 ```
 
 The runner resolves the toolkit root via symlink (for installed projects) and
@@ -231,9 +231,9 @@ consecutive runs produce identical grades.
 
 2. Optionally add a hook in `hooks/<name>.sh` for deterministic checks
 
-3. Run `/eval-audit` to verify compliance
+3. Run `/agent-audit` to verify compliance
 
 4. Add eval fixtures in `evals/fixtures/` (2-3 pass, 2-3 fail) and reference
    solutions in `evals/expected/`
 
-5. Run `/eval-runner --agent <name>` to validate accuracy
+5. Run `/agent-eval --agent <name>` to validate accuracy

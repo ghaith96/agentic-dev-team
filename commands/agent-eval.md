@@ -1,5 +1,5 @@
 ---
-name: eval-runner
+name: agent-eval
 description: >-
   Run eval fixtures against review agents and grade results. Use this after
   adding or modifying a review agent, to validate detection accuracy, or
@@ -12,12 +12,12 @@ allowed-tools: >-
   Skill(review-agent *)
 ---
 
-# Eval Runner
+# Agent Eval
 
 Role: orchestrator. This skill dispatches fixtures to agents and
 grades results — it does not review code itself.
 
-You have been invoked with the `/eval-runner` skill. Run review agents
+You have been invoked with the `/agent-eval` skill. Run review agents
 against eval fixtures and grade the results.
 
 ## Orchestrator constraints

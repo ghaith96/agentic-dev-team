@@ -89,7 +89,7 @@ if [ "$FILE_TYPE" = "agent" ]; then
     fi
   fi
 
-  # Always require /eval-audit and doc sync after agent changes
+  # Always require /agent-audit and doc sync after agent changes
   printf "\n"
   if [ -n "$FAILS" ]; then
     printf "$FAILS"
@@ -99,7 +99,7 @@ if [ "$FILE_TYPE" = "agent" ]; then
   fi
   printf "\n"
   printf "  Agent file changed: $AGENT_NAME\n"
-  printf "  ACTION REQUIRED: Run /eval-audit $FILE_PATH\n"
+  printf "  ACTION REQUIRED: Run /agent-audit $FILE_PATH\n"
   printf "  DOC SYNC REQUIRED: Update .claude/CLAUDE.md and docs/agent_info.md to reflect any changes.\n"
   printf "  Invoke the tech-writer persona to review affected documentation before marking this task complete.\n"
 fi
@@ -149,7 +149,7 @@ if [ "$FILE_TYPE" = "skill" ]; then
       printf "$WARNINGS"
     fi
     printf "\n"
-    printf "  Run /eval-audit for a full compliance report.\n"
+    printf "  Run /agent-audit for a full compliance report.\n"
   fi
 fi
 

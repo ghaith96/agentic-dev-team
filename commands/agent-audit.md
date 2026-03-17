@@ -1,5 +1,5 @@
 ---
-name: eval-audit
+name: agent-audit
 description: >-
   Audit code-review agents, skills, and hooks for structural compliance.
   Use this when adding or modifying any agent, skill, or hook file, or for
@@ -11,12 +11,12 @@ user-invocable: true
 allowed-tools: Read, Edit, Grep, Glob
 ---
 
-# Eval Audit
+# Agent Audit
 
 Role: orchestrator. This skill performs mechanical compliance
 checks — pattern matching against known-good structure.
 
-You have been invoked with the `/eval-audit` skill. Audit agents and
+You have been invoked with the `/agent-audit` skill. Audit agents and
 skills for compliance with the eval system patterns documented in
 `.claude/docs/eval-system.md`.
 
@@ -24,7 +24,7 @@ skills for compliance with the eval system patterns documented in
 
 1. **Check structure, not semantics.** Verify required sections,
    fields, and patterns exist. Do not evaluate whether detection
-   rules are good — that's eval-runner's job.
+   rules are good — that's agent-eval's job.
 2. **Deterministic checks only.** Every check should be reproducible:
    does the field exist? Is the format correct? Does the section
    match the expected pattern?
@@ -169,7 +169,7 @@ Read each file in `.claude/hooks/*.sh` and check:
 ### 5. Generate report
 
 ```text
-# Eval Audit Report
+# Agent Audit Report
 
 ## Agents
 | Agent | Output Format | Severity | Detection | Scope | Self-Describing | File Scope | Skip | Model Tier | Context Needs | Status |
@@ -258,5 +258,5 @@ If `--fix` was used, append a fix summary after the audit report:
 - FIXED: <name> — Added skip section
 - SKIPPED: <name> — <reason fix could not be auto-applied>
 
-Re-run /eval-audit to verify all fixes.
+Re-run /agent-audit to verify all fixes.
 ```
