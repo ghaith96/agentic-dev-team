@@ -133,9 +133,10 @@ For adding individual agents from this repo or other repositories, see [Agents �
 
 ## Hooks
 
-One PreToolUse hook runs before every file write or edit:
+Two PreToolUse hooks run before tool calls:
 
-- `pre-tool-guard.sh` — blocks writes to sensitive paths (credentials, keys, secrets); warns on writes to protected config files. Configured via `hooks/guards.json`.
+- `pre-tool-guard.sh` — blocks writes to sensitive paths (credentials, keys, secrets); warns on writes to protected config files. Also enforces `/freeze` scope locks. Configured via `hooks/guards.json`.
+- `destructive-guard.sh` — detects destructive Bash commands (rm -rf, force-push, DROP TABLE, etc.); warns by default, blocks when `/careful` mode is active. Configured via `hooks/destructive-commands.json`.
 
 Three PostToolUse hooks run after every file write or edit:
 

@@ -84,6 +84,12 @@ flowchart TD
   # or: brew install semgrep
   ```
 
+- `playwright` — required only for `/browse` (browser-based QA)
+
+  ```bash
+  npx playwright install chromium
+  ```
+
 ### Plugin install (recommended)
 
 Installation is two steps: add the marketplace source, then install the plugin.
@@ -187,16 +193,28 @@ After starting Claude Code, confirm the system is working:
 | `/review-summary` | Generate compact session summary |
 | `/semgrep-analyze` | Run Semgrep SAST |
 | `/domain-analysis` | Assess DDD health: bounded contexts, context map, friction report |
+| `/browse` | Browser-based QA: navigate, screenshot, click, fill forms via Playwright |
+| `/careful` | Toggle destructive command blocking (rm -rf, force-push, DROP TABLE) |
+| `/freeze <glob>` | Scope-lock editing to a glob pattern |
+| `/unfreeze` | Lift the scope lock set by `/freeze` |
+| `/guard <glob>` | Combined `/careful` + `/freeze` for production-critical sessions |
+| `/upgrade` | Check for and apply plugin updates from within a session |
+| `/help` | List all available slash commands with descriptions |
+| `/plan` | Create a structured implementation plan with TDD steps |
+| `/pr` | Run quality gates and create a pull request |
+| `/setup` | Detect tech stack, generate project-level config and hooks |
+| `/continue` | Resume work from a prior session using phase progress files |
 
 ## Plugin Structure
 
 ```text
 agents/                # Team agents (12) + review agents (19)
-skills/                # Reusable knowledge modules (23 skills)
+skills/                # Reusable knowledge modules (24 skills)
 knowledge/             # Progressive disclosure reference files for heavyweight agents
 prompts/               # Subagent prompt templates (4) for reproducible dispatch
-commands/              # Slash commands (12 user-invocable + agent/skill invokers)
-hooks/                 # PreToolUse guard + PostToolUse advisory hooks
+commands/              # Slash commands (23 user-invocable + agent/skill invokers)
+hooks/                 # PreToolUse guards (sensitive paths + destructive commands + freeze) + PostToolUse advisory hooks
+plans/                 # Implementation plans created by /plan
 evals/                 # Review agent accuracy fixtures
 docs/                  # Architecture and reference documentation
 docs/specs/            # Design documents produced during Research phase

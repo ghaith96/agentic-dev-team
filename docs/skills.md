@@ -95,6 +95,33 @@ Slash commands are invoked by the user (e.g., `/code-review`) and executed under
 | `/agent-remove` | [`agent-remove.md`](../.claude/commands/agent-remove.md) | Remove an agent and all its registry entries and doc references |
 | `/add-plugin` | [`add-plugin.md`](../.claude/commands/add-plugin.md) | Install a plugin and register it in `settings.json` |
 
+### Workflow Commands
+
+| Command | File | Purpose |
+| --- | --- | --- |
+| `/plan` | [`plan.md`](../.claude/commands/plan.md) | Create a structured implementation plan with TDD steps |
+| `/pr` | [`pr.md`](../.claude/commands/pr.md) | Run quality gates and create a pull request |
+| `/setup` | [`setup.md`](../.claude/commands/setup.md) | Detect tech stack, generate project-level config and hooks |
+| `/continue` | [`continue.md`](../.claude/commands/continue.md) | Resume work from a prior session using phase progress files |
+| `/domain-analysis` | [`domain-analysis.md`](../.claude/commands/domain-analysis.md) | Assess DDD health: bounded contexts, context map, friction report |
+| `/browse` | [`browse.md`](../.claude/commands/browse.md) | Browser-based QA via Playwright: navigate, screenshot, click, fill forms |
+
+### Safety Commands
+
+| Command | File | Purpose |
+| --- | --- | --- |
+| `/careful` | [`careful.md`](../.claude/commands/careful.md) | Toggle destructive command blocking (rm -rf, force-push, DROP TABLE) |
+| `/freeze <glob>` | [`freeze.md`](../.claude/commands/freeze.md) | Scope-lock editing to a glob pattern |
+| `/unfreeze` | [`unfreeze.md`](../.claude/commands/unfreeze.md) | Lift the scope lock set by `/freeze` |
+| `/guard <glob>` | [`guard.md`](../.claude/commands/guard.md) | Combined `/careful` + `/freeze` for production-critical sessions |
+
+### Utility Commands
+
+| Command | File | Purpose |
+| --- | --- | --- |
+| `/upgrade` | [`upgrade.md`](../.claude/commands/upgrade.md) | Check for and apply plugin updates from within a session |
+| `/help` | [`help.md`](../.claude/commands/help.md) | List all available slash commands with descriptions |
+
 ## How Agents Use Skills
 
 Agents reference skills in their `## Skills` section with invocation context:
