@@ -26,6 +26,12 @@
           { "type": "command", "command": "bash hooks/token-efficiency-review.sh" },
           { "type": "command", "command": "bash hooks/eval-compliance-check.sh" }
         ]
+      },
+      {
+        "matcher": "Read",
+        "hooks": [
+          { "type": "command", "command": "bash hooks/version-check.sh" }
+        ]
       }
     ]
   }
