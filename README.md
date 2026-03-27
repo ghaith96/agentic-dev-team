@@ -67,17 +67,25 @@ flowchart TD
 
     PR --> HG2([Human Gate — approve plan])
 
-    subgraph "Phase 3 — Implement"
-        HG2 --> CV["/build step 3\nVerify criteria testability"]
-        CV --> IM["TDD Loop\nRED → GREEN → REFACTOR"]
-        IM --> SC["Stage 1: Spec Compliance\nspec-compliance-review"]
-        SC -->|fail| IM
-        SC -->|pass| QR["Stage 2: Quality Review\nTargeted agents by complexity tier"]
-        QR -->|fail max 2×| IM
-        QR -->|pass| BV{"UI change?"}
-        BV -->|yes| BR["Stage 3: Browser Verify\n/browse smoke test"]
-        BV -->|no| CR
-        BR --> CR["/code-review --changed\nFull suite on all modified files"]
+    subgraph "Phase 3 — Implement (/build)"
+        HG2 --> CV["Verify criteria testability\n(sprint contract gate)"]
+        CV --> NEXT{"Next step?"}
+        NEXT -->|more steps| IM["TDD Loop\nRED → GREEN → REFACTOR"]
+
+        subgraph "Per-Step Inline Review"
+            IM --> CX{"Complexity?"}
+            CX -->|trivial| NEXT
+            CX -->|standard / complex| SC["Stage 1: Spec Compliance\n/review-agent spec-compliance"]
+            SC -->|fail| IM
+            SC -->|pass| QR["Stage 2: Quality Agents\n/review-agent per change type"]
+            QR -->|"fail (max 2×)"| IM
+            QR -->|pass| BV{"UI change?"}
+            BV -->|yes| BR["Stage 3: Browser Verify\n/browse smoke test"]
+            BV -->|no| NEXT
+            BR --> NEXT
+        end
+
+        NEXT -->|all done| CR["/review --changed\nFull agent suite · all modified files"]
     end
 
     CR --> HG3([Human Gate — approve implementation])
