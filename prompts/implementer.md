@@ -27,10 +27,10 @@ Before writing any code, review the task specification. If anything is unclear �
 
 1. Read the plan file and locate unit {unit_id}
 2. Write a failing test for the first behavior (RED)
-3. Run the test — confirm it fails for the expected reason. Paste the output.
-4. Write the minimum implementation to pass (GREEN)
-5. Run the test — confirm it passes with clean output. Paste the output.
-6. Refactor if needed — run tests again
+3. Run the test suite. **HARD GATE: the new test must fail.** Paste the failing output. If the test passes without new code, the behavior already exists — pick a different test. Do NOT write implementation code until you have pasted failing test output.
+4. Write the minimum implementation to pass (GREEN). Do not add behavior beyond what the test requires.
+5. Run the test suite. **HARD GATE: all tests must pass.** Paste the passing output. Do NOT proceed until you have pasted passing test output.
+6. Refactor if needed — run tests again, they must still pass
 7. Repeat RED-GREEN-REFACTOR for each behavior in the unit
 8. When all behaviors pass, run the full test suite
 9. Self-review: read your own diff. Check for missed edge cases, naming issues, unnecessary changes.

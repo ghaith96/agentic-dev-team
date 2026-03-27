@@ -44,9 +44,9 @@ Read the plan file. If the status is not `approved`, ask the user: "This plan ha
 
 For each step in the plan, dispatch implementation following the implementer template (`prompts/implementer.md`):
 
-1. **RED** — Write the failing test described in the step. Run it. Confirm it fails for the expected reason. Paste the output.
-2. **GREEN** — Write the minimum implementation to pass. Run the test. Confirm it passes. Paste the output.
-3. **REFACTOR** — Clean up if the plan specifies refactoring for this step. Run tests again.
+1. **RED** — Write the failing test described in the step. Run the test suite. **Hard gate: the new test must fail.** Paste the failing output. If the test passes without new code, the behavior already exists — pick a different test. Do NOT proceed to GREEN without pasted failing output.
+2. **GREEN** — Write the minimum implementation to make the failing test pass. Do not add behavior beyond what the test requires. Run the test suite. **Hard gate: all tests must pass.** Paste the passing output. Do NOT proceed without pasted passing output.
+3. **REFACTOR** — Clean up structure, naming, duplication without changing behavior. Run tests again — they must still pass. If tests break, undo and try a smaller change.
 4. **Inline review checkpoint** — Run `/review-agent spec-compliance-review` against changed files. If it passes, run quality review agents relevant to what changed. If review fails, apply corrections (max 2 iterations). If still failing after 2, escalate to the user.
 5. **Mark step done** — Update the plan file: check off the step's acceptance criteria, set the step as completed.
 
